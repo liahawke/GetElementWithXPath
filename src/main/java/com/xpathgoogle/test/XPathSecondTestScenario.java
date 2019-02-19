@@ -19,7 +19,7 @@ public class XPathSecondTestScenario {
 
 
        private String getXPath (String symbol){
-        return "//*[@id='content']//ul[@class='unicode_table u0000']/li[contains(text(), '" + symbol + "')]";
+        return "//div[@id='content']//ul[@class='unicode_table u0000']/li[contains(text(), '" + symbol + "')]";
     }
 
     /**
@@ -38,11 +38,11 @@ public class XPathSecondTestScenario {
     }
 
     /**
-     *
+     * Show certain letters in console
      *
      */
     @Test
-    public void testOpenSiteWithWaitsTest() {
+    public void testFindElementsWithXPath() {
         driver.get(URL);
         wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(getXPath("Q")))));
