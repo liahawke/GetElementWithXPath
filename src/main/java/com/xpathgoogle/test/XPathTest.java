@@ -10,13 +10,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class XPathTest {
     private WebDriver driver;
     private WebDriverWait wait;
     private final String URL_PHONE = "https://supsystic.com/example/comparison-example/";
-    private final String SAMSUNG_NEW_PRICE_XPATH = "//div[@id='ptsBlock_108860']//div[@class='ptsEl ptsCol ptsElWithArea ptsCol-2']//div[@class='ptsRows ui-sortable']/div[@class='ptsCell'][position()=last()]//span";
-    private final String SAMSUNG_OLD_PRICE_XPATH = "//div[@id='ptsBlock_108860']//div[@class='ptsEl ptsCol ptsElWithArea ptsCol-2']//div[@class='ptsColFooter']/div[@class='ptsEl']//span";
+    private final String SAMSUNG_NEW_PRICE_XPATH = "//div[@class='ptsEl ptsCol ptsElWithArea ptsCol-2']//div[@class='ptsTableElementContent ptsElArea']//child::div[@class='ptsRows ui-sortable']//child::div[@class='ptsCell'][position()=last()]//span";
+    private final String SAMSUNG_OLD_PRICE_XPATH = "//div[@class='ptsEl ptsCol ptsElWithArea ptsCol-2']//div[@class='ptsTableElementContent ptsElArea']//child::div[@class='ptsColFooter']//child::div[@class='ptsEl']//span[contains(text(), '$')]";
 
 
     /**
@@ -29,6 +31,8 @@ public class XPathTest {
         options.addArguments("disable-infobars");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
     }
 
     /**
